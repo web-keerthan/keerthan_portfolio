@@ -1,0 +1,58 @@
+---
+import ProjectCard from "./ProjectCard.astro";
+import Road from "./Road.astro";
+import Vehicles from "./Vehicles.astro";
+import { sanityClient } from '../utils/sanity';
+
+const query = `*[_type == "project"] | order(_createdAt asc){
+    title,
+    slug,
+    overview,
+    timeline,
+    link,
+    thumbnail,
+    description,
+    video,
+    gallery
+}`;
+
+const projects = (await sanityClient.fetch(query)) || [];
+---
+
+<section class="relative min-h-screen py-8 sm:py-10 md:py-15 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 sm:space-y-16 bg-explosive-grey overflow-hidden">
+  <Road />
+
+  <Vehicles />
+
+  <div id="section-header" class="relative z-10 flex flex-col items-center justify-center text-center space-y-3 sm:space-y-4">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-thamar-black">
+      Keerthan — <span class="text-burnt-almond">Frontend Developer</span>
+    </h2>
+  </div>
+
+  {/* Alternating Project Grid */}
+  {projects.length > 0 ? (
+    <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-y-10 sm:gap-y-16 md:gap-y-24 gap-x-6 lg:gap-x-32 xl:gap-x-44 items-center justify-items-center">
+      {projects.map((project, index) => {
+        const isEven = index % 2 === 0;
+        return (
+          <>
+            {/* Even row: Spacer on left, Card on right (Desktop) */}
+            {isEven && <div class="hidden md:block w-full" />}
+            
+            <div class="w-full flex justify-center">
+              <ProjectCard cardContent={project} />
+            </div>
+
+            {/* Odd row: Card on left, Spacer on right (Desktop) */}
+            {!isEven && <div class="hidden md:block w-full" />}
+          </>
+        );
+      })}
+    </div>
+  ) : (
+    <div class="relative z-10 flex flex-col items-center justify-center p-8 sm:p-12 text-center rounded-2xl border border-dashed border-hulett-ore/40 bg-explosive-grey/40">
+      <p class="text-thamar-black/80 font-medium text-sm sm:text-base">No projects available to display yet.</p>
+    </div>
+  )}
+</section>

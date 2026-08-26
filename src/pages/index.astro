@@ -1,17 +1,22 @@
 ---
-
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Content from '../components/Content.astro';
 ---
 
-<html lang="en">
+<html lang="en" class="bg-explosive-grey text-thamar-black antialiased selection:bg-burnt-almond selection:text-white">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Keerthan Portfolio</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="min-h-screen bg-explosive-grey font-sans text-thamar-black">
+		<Header />
+		<main>
+			<Content />
+		</main>
 	</body>
 </html>

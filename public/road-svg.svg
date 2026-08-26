@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#F8F9FA" />
+
+  <!-- Base Black Outline / Foundation for Road -->
+  <rect x="100" y="50" width="312" height="412" rx="16" fill="#000000" />
+
+  <!-- Yellow Outer Stripes -->
+  <rect x="120" y="70" width="24" height="372" fill="#FFD100" />
+  <rect x="368" y="70" width="24" height="372" fill="#FFD100" />
+
+  <!-- Inner Black Base (Creates the borders between the yellow stripes and the gray road) -->
+  <rect x="144" y="70" width="224" height="372" fill="#000000" />
+
+  <!-- Asphalt Gray Road Surface -->
+  <rect x="160" y="70" width="192" height="372" fill="#8C8C8C" />
+
+  <!-- White Dashed Center Line -->
+  <line 
+    x1="256" y1="101" 
+    x2="256" y2="411" 
+    stroke="#FFFFFF" 
+    stroke-width="14" 
+    stroke-dasharray="30 40" 
+    stroke-linecap="round" 
+  />
+</svg>

@@ -1,0 +1,23 @@
+---
+
+---
+
+<div id="car-container" class="absolute inset-0 z-20 pointer-events-none translate-x-1/2 translate-y-1/2">
+    <model-viewer
+    id='car'
+    src="/models/Car.glb"
+    alt="Car"
+    shadow-intensity = '1'
+    interaction-prompt = 'none'
+    camera-controls
+    camera-orbit ="-90deg -90deg auto"
+    class="block w-16 h-16 sm:w-20 sm:h-20"></model-viewer>
+</div>
+
+<script is:inline type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js">
+
+    export function buildPaths(){
+
+    }
+</script>
+

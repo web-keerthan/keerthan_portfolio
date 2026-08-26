@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --color-explosive-grey: #c3c4c2;
+  --color-pewter-cast: #9c9793;
+  --color-burnt-almond: #b47248;
+  --color-hulett-ore: #726e6c;
+  --color-nutria-brown: #514037;
+  --color-thamar-black: #1b1617;
+}
+
+body {
+  background-color: #c3c4c2;
+  color: #1b1617;
+}

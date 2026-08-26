@@ -1,0 +1,101 @@
+---
+import { urlFor } from '../utils/sanity';
+
+export interface Props {
+  cardContent?: {
+    title?: string;
+    overview?: string;
+    thumbnail?: string | { asset?: { url?: string } };
+    link?: string;
+    slug?: string | { current?: string };
+    timeline?: string;
+  };
+  title?: string;
+  overview?: string;
+  thumbnail?: string;
+  link?: string;
+}
+
+const { cardContent, title, overview, thumbnail, link } = Astro.props;
+const projectTitle = cardContent?.title || title || "Untitled Project";
+const projectOverview = cardContent?.overview || overview || "No project overview available at this time.";
+const projectLink = cardContent?.link || link || "#";
+const projectTimeline = cardContent?.timeline;
+
+const projectThumbnail = cardContent?.thumbnail;
+---
+
+<article
+  class="project-card group relative flex flex-col w-full max-w-[85vw] sm:max-w-md md:max-w-lg lg:max-w-xl justify-between overflow-hidden rounded-2xl bg-thamar-black backdrop-blur-md border border-hulett-ore/40 shadow-xl transition-all duration-300 hover:border-burnt-almond/50"
+>
+  {/* Thumbnail Image Container */}
+  <div class="relative w-full aspect-video overflow-hidden bg-hulett-ore/20 border-b border-hulett-ore/30">
+    {
+      projectThumbnail ? (
+        <img
+          src={urlFor(projectThumbnail).url()}
+          alt={projectTitle}
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      ) : (
+        <div class="flex h-full w-full items-center justify-center bg-hulett-ore/40 text-explosive-grey">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 sm:h-10 sm:w-10 opacity-50 text-explosive-grey"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+          </svg>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="flex items-start sm:items-center justify-between gap-4 p-4 sm:p-6">
+    <div class="flex flex-col gap-2 flex-1 min-w-0">
+        {projectTimeline && (
+        <span class="inline-block px-2.5 py-0.5 text-[10px] sm:text-xs font-semibold text-explosive-grey border border-explosive-grey/40 bg-explosive-grey/10 rounded-full w-fit">
+            {projectTimeline}
+        </span>
+        )}
+
+        <div class="flex flex-col gap-1.5">
+            <h3 class="text-lg sm:text-xl font-bold tracking-tight text-burnt-almond group-hover:text-explosive-grey transition-colors duration-200 truncate">
+                {projectTitle}
+            </h3>
+
+            <p class="line-clamp-2 text-xs sm:text-sm leading-relaxed text-pewter-cast">
+                {projectOverview}
+            </p>
+        </div>
+    </div>
+
+    <div class="self-end sm:self-center shrink-0 pt-1 sm:pt-0">
+        <a
+            href={projectLink}
+            target={projectLink !== "#" ? "_blank" : "_self"}
+            rel="noopener noreferrer"
+            class="group/link inline-flex items-center justify-center p-2 text-burnt-almond transition-colors duration-200 hover:text-explosive-grey focus:outline-none focus:ring-2 focus:ring-burnt-almond focus:ring-offset-2 focus:ring-offset-thamar-black rounded-lg"
+            aria-label={`View ${projectTitle}`}
+        >
+            <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 transition-transform duration-300 ease-out group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+            >
+            <path d="M7 17L17 7"></path>
+            <path d="M7 7h10v10"></path>
+            </svg>
+        </a>
+    </div>
+  </div>
+</article>
