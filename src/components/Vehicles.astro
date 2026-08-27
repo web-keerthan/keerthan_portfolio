@@ -1,23 +1,23 @@
 ---
 
----
+const {vehicle = { name:"Car", model: "/models/Car.glb" , orbit: "-90deg -90deg auto"}} = Astro.props;
 
-<div id="car-container" class="absolute inset-0 z-20 pointer-events-none translate-x-1/2 translate-y-1/2">
-    <model-viewer
-    id='car'
-    src="/models/Car.glb"
-    alt="Car"
-    shadow-intensity = '1'
-    interaction-prompt = 'none'
-    camera-controls
-    camera-orbit ="-90deg -90deg auto"
-    class="block w-16 h-16 sm:w-20 sm:h-20"></model-viewer>
+---
+<div>
+    <div id="vehicle-container" class="absolute top-0 left-0 w-max h-max pointer-events-none">
+        <model-viewer
+        id='vehicle'
+        src={vehicle.model}
+        alt="Vehicle"
+        interaction-prompt = 'none'
+        camera-controls
+        camera-orbit ={vehicle.orbit}
+        class="block w-16 h-16 sm:w-20 sm:h-20"></model-viewer>
+    </div>
 </div>
+
 
 <script is:inline type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js">
 
-    export function buildPaths(){
-
-    }
 </script>
 
