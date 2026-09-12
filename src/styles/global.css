@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
 @theme {
@@ -13,4 +13,11 @@
 body {
   background-color: #c3c4c2;
   color: #1b1617;
+}
+
+model-viewer {
+  background-color: transparent;
+  --poster-color: transparent;
+  --progress-bar-color: transparent;
+  --progress-mask: transparent;
 }

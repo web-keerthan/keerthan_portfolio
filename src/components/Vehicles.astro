@@ -1,4 +1,4 @@
----
+﻿---
 
 const {vehicle = { name:"Car", model: "/models/Car.glb" , orbit: "-90deg -90deg auto"}} = Astro.props;
 
@@ -6,13 +6,16 @@ const {vehicle = { name:"Car", model: "/models/Car.glb" , orbit: "-90deg -90deg 
 <div>
     <div id="vehicle-container" class="absolute top-0 left-0 w-max h-max pointer-events-none">
         <model-viewer
-        id='vehicle'
+        id="vehicle"
         src={vehicle.model}
         alt="Vehicle"
-        interaction-prompt = 'none'
+        interaction-prompt="none"
+        shadow-intensity="0"
+        shadow-softness="0"
         camera-controls
-        camera-orbit ={vehicle.orbit}
-        class="block w-16 h-16 sm:w-20 sm:h-20"></model-viewer>
+        camera-orbit={vehicle.orbit}
+        class="block w-16 h-16 sm:w-20 sm:h-20"
+        style="background-color: transparent; --poster-color: transparent; --progress-bar-color: transparent;"></model-viewer>
     </div>
 </div>
 

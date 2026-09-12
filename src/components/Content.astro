@@ -31,21 +31,18 @@ const projects = (await sanityClient.fetch(query)) || [];
   <VehicleChange />
 
 
-  {/* Alternating Project Grid */}
   {projects.length > 0 ? (
-    <div class="relative z-10 w-full grid grid-cols-1 pt-20 md:pt-0 md:grid-cols-2 gap-y-70 sm:gap-y-60 md:gap-y-40 gap-x-20 lg:gap-x-40 xl:gap-x-60 items-center place-self-center ">
+    <div class="relative z-10 w-full grid grid-cols-1 pt-10 md:pt-0 md:grid-cols-2 gap-y-50 sm:gap-y-40 md:gap-y-30 gap-x-20 lg:gap-x-40 xl:gap-x-60 items-center place-self-center ">
       {projects.map((project, index) => {
         const isEven = index % 2 === 0;
         return (
           <>
-            {/* Even row: Spacer on left, Card on right (Desktop) */}
             {isEven && <div class="hidden md:block w-full" />}
             
             <div class="w-full flex justify-center">
               <ProjectCard cardContent={project} />
             </div>
 
-            {/* Odd row: Card on left, Spacer on right (Desktop) */}
             {!isEven && <div class="hidden md:block w-full" />}
           </>
         );

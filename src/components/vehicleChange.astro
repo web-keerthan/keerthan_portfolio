@@ -1,6 +1,6 @@
----
+﻿---
 const vehicles = [
-    { name:"Car", model: "/models/Car.glb" , orbit: "-90deg -90deg auto"},
+    { name:"Car", model: "/models/Car.glb" , orbit: "auto auto auto"},
     { name:"Car2", model: "/models/car2.glb", orbit: "auto auto auto"},
     {name:"Police", model:"/models/police.glb", orbit:"auto auto auto"}
 ]
@@ -16,9 +16,11 @@ const vehicles = [
                             src={vehicle.model}
                             camera-orbit={vehicle.orbit}
                             interaction-prompt="none"
-                            camera-orbit = "auto"
-                            loading="lazy"
+                            shadow-intensity="0"
+                            shadow-softness="0"
+                            loading="eager"
                             class="w-10 h-10 sm:w-12 sm:h-12"
+                            style="background-color: transparent; --poster-color: transparent; --progress-bar-color: transparent;"
                         ></model-viewer>
                     </button>
                 </li>
@@ -28,14 +30,15 @@ const vehicles = [
 </div>
 
 <script>
-    const vehicleItems = document.querySelectorAll('.vehicle-item');
-    const vehicleModel = document.getElementById('vehicle') as HTMLModelViewerElement;
+    const vehicleItems = document.querySelectorAll(".vehicle-item");
+    const vehicleModel = document.getElementById("vehicle") as HTMLModelViewerElement;
 
     vehicleItems.forEach((item) => {
-        item.addEventListener('click', () => {
-            const vehicle = JSON.parse(item.getAttribute('data-vehicle') || '{}') as any;
+        item.addEventListener("click", () => {
+            const vehicle = JSON.parse(item.getAttribute("data-vehicle") || "{}") as any;
             vehicleModel.src = vehicle.model;
             vehicleModel.cameraOrbit = vehicle.orbit;
         });
     });
 </script>
+
